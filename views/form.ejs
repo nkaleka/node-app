@@ -1,0 +1,140 @@
+<%- include('layouts/header'); -%>
+<body>
+  <%- include('layouts/nav'); -%>
+  <main>
+    <form name="ElectronicStoreSaleForm" action="" method="Post">
+      <p class="input">
+        <label for="name">Customer Name: </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="FirstName LastName"
+        />
+      </p>
+      <p class="input">
+        <label for="memberNumber">Membership number:</label>
+        <input
+          type="text"
+          id="memberNumber"
+          name="memberNumber"
+          placeholder="A12-BC3-456"
+        />
+      </p>
+      <div class="item">
+        <span class="name">Video Doorbells</span>
+        <br />
+        <span class="price">$49.98 each</span>
+        <br />
+        <label for="quantityDoorBellInput">Enter Quantity</label>
+        <br />
+        <input
+          type="text"
+          id="quantityDoorBellInput"
+          name="quantityDoorBellInput"
+          placeholder="10"
+        />
+      </div>
+      <div class="item">
+        <span class="name">Outdoor Cameras</span>
+        <br />
+        <span class="price">$149.49 each</span>
+        <br />
+        <label for="quantityOutdoorCamerasInput">Enter Quantity</label>
+        <br />
+        <input
+          type="text"
+          id="quantityOutdoorCamerasInput"
+          name="quantityOutdoorCamerasInput"
+          placeholder="10"
+        />
+      </div>
+      <div class="item">
+        <span class="name">Baby Monitors</span>
+        <br />
+        <span class="price">$99.99 each</span>
+        <br />
+        <label for="quantityBabyMonitorsInput">Enter Quantity</label>
+        <br />
+        <input
+          type="text"
+          id="quantityBabyMonitorsInput"
+          name="quantityBabyMonitorsInput"
+          placeholder="10"
+        />
+      </div>
+      <p class="input">
+        <input type="submit" value="Checkout" class="button" />
+        <input type="reset" value="Clear" class="button" />
+      </p>
+    </form>
+  </main>
+  <% if (typeof(errors) != 'undefined') { %>
+  <div class="receipt">
+    <p>There are following errors in your submission, please check them:</p>
+    <ul>
+      <% for (let error of errors) { %>
+      <li><%= error.msg %></li>
+      <% } %>
+    </ul>
+  </div>
+  <% } %> <% if (typeof(total) != 'undefined') { %>
+  <div class="receipt">
+    <h3>Your Receipt:</h3>
+    <table>
+      <tr>
+        <th>Name:</th>
+        <td><%= name %></td>
+      </tr>
+      <tr>
+        <th>Member Number:</th>
+        <td><%= memberNumber %></td>
+      </tr>
+      <% if (quantityDoorBellInput > 0) { %>
+      <tr>
+        <th>Quantity of Door bells:</th>
+        <td><%= quantityDoorBellInput %></td>
+      </tr>
+      <% } %> <% if (quantityDoorBellInput > 0) { %>
+      <tr>
+        <th>Price of Door Bells:</th>
+        <td>$<%= priceDoorBell.toFixed(2) %></td>
+      </tr>
+      <% } %> <% if (quantityOutdoorCamerasInput > 0) { %>
+      <tr>
+        <th>Quantity of Outdoor Cameras:</th>
+        <td><%= quantityOutdoorCamerasInput %></td>
+      </tr>
+      <% } %> <% if (quantityOutdoorCamerasInput > 0) { %>
+      <tr>
+        <th>Price of Outdoor Cameras:</th>
+        <td>$<%= priceOutdoorCameras.toFixed(2) %></td>
+      </tr>
+      <% } %> <% if (quantityBabyMonitorsInput > 0) { %>
+      <tr>
+        <th>Quantity of Baby Monitors:</th>
+        <td><%= quantityBabyMonitorsInput %></td>
+      </tr>
+      <% } %> <% if (quantityBabyMonitorsInput > 0) { %>
+      <tr>
+        <th>Price of Baby Monitors:</th>
+        <td>$<%= priceBabyMonitors.toFixed(2) %></td>
+      </tr>
+      <% } %>
+
+      <tr>
+        <th>Sub Total:</th>
+        <td>$<%= subTotal.toFixed(2) %></td>
+      </tr>
+      <tr>
+        <th>Tax:</th>
+        <td>$<%= tax.toFixed(2) %></td>
+      </tr>
+      <tr>
+        <th>Total:</th>
+        <td>$<%= total.toFixed(2) %></td>
+      </tr>
+    </table>
+  </div>
+  <% } %>
+</body>
